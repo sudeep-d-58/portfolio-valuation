@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.google.protobuf' version '0.8.18'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Spring Framework
+    implementation 'org.springframework:spring-context:5.3.9'
+    implementation 'org.springframework:spring-jdbc:5.3.9'
+
+    // Protobuf
+    implementation 'com.google.protobuf:protobuf-java:4.28.2'
+
+    // Database
+    implementation 'com.h2database:h2:2.1.214'
+    implementation 'org.springframework:spring-jdbc:5.3.23'
+
+    // CSV Processing
+    implementation 'org.apache.commons:commons-csv:1.9.0'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+    // Utilities
+    implementation 'com.google.guava:guava:32.0.1-android'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.7"
+    }
+}
+
+application {
+    mainClass = 'com.portfolio.Main'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

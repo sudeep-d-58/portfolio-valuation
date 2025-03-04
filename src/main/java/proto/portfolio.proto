@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package com.portfoliovaluation.proto;
+
+option java_package = "com.portfoliovaluation.proto";
+option java_multiple_files = true;
+
+enum SecurityType {
+  STOCK = 0;
+  CALL_OPTION = 1;
+  PUT_OPTION = 2;
+}
+
+message SecurityDefinition {
+  string ticker = 1;
+  SecurityType type = 2;
+
+  // Stock specific fields
+  optional double initial_price = 3;
+  optional double expected_return = 4;
+  optional double volatility = 5;
+
+  // Option specific fields
+  optional double strike_price = 6;
+  optional int64 maturity_timestamp = 7;
+  optional string underlying_ticker = 8;
+}
+
+message PositionData {
+  SecurityDefinition security = 1;
+  int32 quantity = 2;
+  double current_market_value = 3;
+}
+
+message PortfolioSnapshot {
+  repeated PositionData positions = 1;
+  double total_nav = 2;
+  int64 timestamp = 3;
+}
+
+message MarketPriceUpdate {
+  string ticker = 1;
+  double price = 2;
+  int64 timestamp = 3;
+}
+
+message OptionPricingRequest {
+  string option_ticker = 1;
+  double underlying_price = 2;
+  double risk_free_rate = 3;
+  double time_to_maturity = 4;
+}
+
+message OptionPricingResult {
+  string option_ticker = 1;
+  double theoretical_price = 2;
+  bool is_valid = 3;
+}
