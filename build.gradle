@@ -19,6 +19,7 @@ dependencies {
     // Database
     implementation 'com.h2database:h2:2.1.214'
     implementation 'org.springframework:spring-jdbc:5.3.23'
+    runtimeOnly 'com.h2database:h2'
 
     // CSV Processing
     implementation 'org.apache.commons:commons-csv:1.9.0'
